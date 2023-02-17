@@ -1,14 +1,14 @@
 
 const express = require("express");
 const path = require("path");
-const {mergePDF}  = require('./merge')
 const app = express();
+const { mergePDF }  = require('./merge')
+const multer  = require('multer');
+
 const port = 3000;
 
-const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' });
-
-app.use('/static', express.static('public'))
+app.use('/static', express.static('public'));
 
 
 app.get("/", (req, res) => {
@@ -29,14 +29,14 @@ app.post('/merge', upload.array('pdfs', 2), async (req, res)=> {
 
     //TODO: To handle sigle pdf in a same array
 
-app.post('/merge', upload.single('pdf-1'), function (req, res, next) {
-    console.log(req.files);
-    res.send({data:req.files});
-})
-app.post('/merge', upload.single('pdf-2'), function (req, res, next) {
-    console.log(req.files);
-    res.send({data:req.files});
-})
+// app.post('/merge', upload.single('pdf-1'), function (req, res, next) {
+//     console.log(req.files);
+//     res.send({data:req.files});
+// })
+// app.post('/merge', upload.single('pdf-2'), function (req, res, next) {
+//     console.log(req.files);
+//     res.send({data:req.files});
+// })
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

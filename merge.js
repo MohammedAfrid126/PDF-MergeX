@@ -13,9 +13,9 @@ const mergePDF = async (p1,p2) => {
 
 
   //It is to not overwrite the file
-  let date = new Date();
+  let date = new Date().getTime();
   await merger.save(`public/${date}.pdf`); //save under given name and reset the internal document
-  return date
+  return date;
     
   // Export the merged PDF as a nodejs Buffer
   // const mergedPdfBuffer = await merger.saveAsBuffer();
